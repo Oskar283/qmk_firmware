@@ -1,10 +1,16 @@
-CONSOLE_ENABLE = no
-COMMAND_ENABLE = no
-UNICODEMAP_ENABLE = yes
-KEY_LOCK_ENABLE = no
-MOUSEKEY_ENABLE = yes
-TAP_DANCE_ENABLE = yes
-COMBO_ENABLE = yes
-NKRO_ENABLE = yes
-SWAP_HANDS_ENABLE = yes
-LTO_ENABLE = yes
+# Build Options
+#   change to "no" to disable the options, or define them in the Makefile in
+#   the appropriate keymap folder that will get included automatically
+#
+BOOTMAGIC_ENABLE        = no
+MOUSEKEY_ENABLE         = no
+CONSOLE_ENABLE          = no
+COMMAND_ENABLE          = no
+
+RGBLIGHT_ENABLE         = no
+RGB_MATRIX_ENABLE       = no
+
+OLED_DRIVER_ENABLE      = yes
+
+BOOTLOADER              = atmel-dfu
+SPLIT_TRANSPORT         = mirror

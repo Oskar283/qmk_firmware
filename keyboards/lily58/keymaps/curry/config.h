@@ -1,14 +1,10 @@
 #pragma once
 
-#define EE_HANDS
-#define USE_SERIAL_PD2
+#define EE_HANDS #define USE_SERIAL_PD2
 
-#define OLED_DISABLE_TIMEOUT
-#define TAPPING_TERM_PER_KEY
+#define OLED_DISABLE_TIMEOUT #define TAPPING_TERM_PER_KEY
 
-#if defined(RGBLIGHT_ENABLE)
-#    undef RGBLED_NUM
-#    define RGBLED_NUM 27
+#if defined(RGBLIGHT_ENABLE) #    undef RGBLED_NUM #    define RGBLED_NUM 27
 
 #    define RGBLIGHT_HUE_STEP 8
 #    define RGBLIGHT_SAT_STEP 8
