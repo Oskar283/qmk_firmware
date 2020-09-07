@@ -3,9 +3,21 @@
 #define USE_SERIAL
 
 #define MASTER_LEFT
-// #define MASTER_RIGHT
-//#define EE_HANDS
-// Rows are doubled-up
+
+#define EE_HANDS
+#define USE_SERIAL_PD2
+
+#define OLED_DISABLE_TIMEOUT
+
+#if defined(RGBLIGHT_ENABLE)
+#    undef RGBLED_NUM
+#    define RGBLED_NUM 27
+
+#    define RGBLIGHT_HUE_STEP 8
+#    define RGBLIGHT_SAT_STEP 8
+#    define RGBLIGHT_VAL_STEP 5
+#    define RGBLIGHT_LIMIT_VAL 120
+#endif
 
 // Default tapping term is 200
 #define TAPPING_TERM 180
@@ -19,9 +31,6 @@
  
 // This prevents short hold periods to be interpreted as individual taps when typing quickly.
 #define PERMISSIVE_HOLD
-
-#define COMBO_COUNT 11
-#define COMBO_TERM 70
 
 
 //Shamelessly stolen mouse key settings from @pierrechevalier83:
