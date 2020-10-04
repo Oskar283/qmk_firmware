@@ -1,7 +1,7 @@
 /* A standard layout for the Dactyl Manuform 5x6 Keyboard */ 
 
 #include QMK_KEYBOARD_H
-
+#include "sendstring_swedish.h"
 
 void matrix_init_user() {
 	set_unicode_input_mode(UC_LNX);
@@ -23,22 +23,22 @@ enum layer_names {
 #define SYM_ENT LT(_SYM, KC_ENT)
 
 // Miscellaneous keyboard shortcuts in direct access
-#define UNDO LCTL(KC_Z)
-#define REDO LCTL(KC_Y)
+#define UNDO LCTL(SE_Z)
+#define REDO LCTL(SE_Y)
 #define C_INS LCTL(KC_INS)
 #define S_INS LSFT(KC_INS)
 
 // Left-hand home row mods
-#define HOME_A LGUI_T(KC_A)
-#define HOME_R LALT_T(KC_R)
-#define HOME_S LSFT_T(KC_S)
-#define HOME_T LCTL_T(KC_T)
+#define HOME_A LGUI_T(SE_A)
+#define HOME_R LALT_T(SE_R)
+#define HOME_S LSFT_T(SE_S)
+#define HOME_T LCTL_T(SE_T)
 
 // Right-hand home row mods
-#define HOME_O LGUI_T(KC_O)
-#define HOME_I LALT_T(KC_I)
-#define HOME_E RSFT_T(KC_E)
-#define HOME_N LCTL_T(KC_N)
+#define HOME_O LGUI_T(SE_O)
+#define HOME_I LALT_T(SE_I)
+#define HOME_E RSFT_T(SE_E)
+#define HOME_N LCTL_T(SE_N)
 
 #define NAV MO(_NAV)
 #define ADJUST MO(_ADJUST)
@@ -614,11 +614,11 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK_DHM] = LAYOUT_5x6(
-         KC_GRV, KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,    KC_F6 , KC_F7 , KC_F8 , KC_F9 , KC_F10, KC_F11,
-         KC_TAB, KC_Q  , KC_W  , KC_F  , KC_P  , KC_B  ,    KC_J  , KC_L  , KC_U  , KC_Y  ,KC_SCLN,KC_MINS,
-         KC_ESC, KC_A  , KC_R  , HOME_S, HOME_T, KC_G  ,    KC_M  , HOME_N, HOME_E, KC_I  , KC_O  ,KC_QUOT,
-      KC_BSLASH, KC_Z  , KC_X  , KC_C  , KC_D, KC_V  ,      KC_K  , KC_H  ,KC_COMM, KC_DOT,KC_SLSH, KC_GRV,
-                        KC_LPRN,KC_RPRN,                                   KC_LBRC, KC_RBRC,
+         SE_GRV, KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,    KC_F6 , KC_F7 , KC_F8 , KC_F9 , KC_F10, KC_F11,
+         KC_TAB, SE_Q  , SE_W  , SE_F  , SE_P  , SE_B  ,    SE_J  , SE_L  , SE_U  , SE_Y  ,SE_SCLN,SE_MINS,
+         KC_ESC, SE_A  , SE_R  , HOME_S, HOME_T, SE_G  ,    SE_M  , HOME_N, HOME_E, SE_I  , SE_O  ,SE_QUOT,
+      SE_BSLS, SE_Z  , SE_X  , SE_C  , SE_D, SE_V  ,      SE_K  , SE_H  ,SE_COMM, SE_DOT,SE_SLSH, SE_QUES,
+                        SE_LPRN,SE_RPRN,                                   SE_LBRC, SE_RBRC,
                                           NAV  , KC_SPC,    KC_BSPC, SYM_ENT,
                                         KC_LALT, MOUSE ,    KC_DEL , KC_LGUI,
                                         KC_LALT,KC_LALT,    KC_LGUI, KC_LGUI
@@ -627,9 +627,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_SYM] = LAYOUT_5x6(
 
         _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
-        KC_DOT , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,    KC_6   , KC_7  , KC_8  , KC_9  , KC_0  ,_______,
-        KC_TILD,KC_EXLM, KC_AT ,KC_HASH,KC_DLR ,KC_PERC,    KC_CIRC,KC_AMPR,KC_ASTR,KC_EQL ,KC_PLUS,KC_MINS,
-        _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
+        KC_DOT , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,    KC_6   , KC_7  , KC_8  , KC_9  , KC_0  ,SE_MINS,
+        SE_TILD,SE_EXLM, SE_AT ,SE_HASH,SE_DLR ,SE_PERC,    SE_CIRC,SE_AMPR,SE_ASTR,SE_EQL ,SE_PLUS,SE_DQUO,
+        _______,_______,_______,_______,_______,_______,    _______,_______,SE_LABK,SE_RABK,SE_QUES,_______,
                         _______,_______,                                    _______,_______, 
                                         _______,KC_UNDS,    _______,_______,
                                         _______,_______,    _______,_______,
