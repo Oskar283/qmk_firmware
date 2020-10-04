@@ -12,8 +12,6 @@ enum layer_names {
     _SYM,
     _NAV,
     _MOUSE,
-    _UPPER,
-    _LOWER,
     _ADJUST,
 };
 
@@ -23,8 +21,6 @@ enum layer_names {
 #define MOUSE MO(_MOUSE)
 #define ADJUST MO(_ADJUST)
 #define SYM_ENT LT(_SYM, KC_ENT)
-#define LW_SPC LT(_LOWER, KC_SPC)
-#define UP_BSPC LT(_UPPER, KC_BSPC)
 
 // Miscellaneous keyboard shortcuts in direct access
 #define UNDO LCTL(KC_Z)
@@ -45,8 +41,6 @@ enum layer_names {
 #define HOME_N LCTL_T(KC_N)
 
 #define NAV MO(_NAV)
-#define LOWER MO(_LOWER)
-#define MOUSE MO(_MOUSE)
 #define ADJUST MO(_ADJUST)
 
 enum unicode_names {
@@ -658,28 +652,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         _______,_______,                                    _______,_______,
                                         _______,_______,    KC_BTN1,KC_BTN2,
                                         _______,_______,    KC_BTN3,_______,
-                                        _______,_______,    _______,_______
-    ),
-
-    [_UPPER] = LAYOUT_5x6(
-        _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
-        KC_TAB , KC_Q  , KC_W  , KC_F  , KC_P  , KC_B  ,     KC_J  , KC_L  , KC_U  , KC_Y  ,KC_SCLN,KC_MINS,
-        _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
-                        _______,_______,                                    _______,_______,
-                                        _______,_______,    KC_BSPC,_______,
-                                        _______,_______,    _______,_______,
-                                        _______,_______,    _______,_______
-    ),
-
-    [_LOWER] = LAYOUT_5x6(
-        _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
-      KC_BSLASH, KC_Z  , KC_X  , KC_C  , KC_D  , KC_V  ,     KC_K  , KC_H  ,KC_COMM,TD(TD_DOT),KC_SLSH, KC_GRV,
-        _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
-                        _______,_______,                                    _______,_______,
-                                        _______,_______,    _______,_______,
-                                        _______,_______,    _______,_______,
                                         _______,_______,    _______,_______
     ),
 
