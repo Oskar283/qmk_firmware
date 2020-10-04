@@ -12,7 +12,6 @@ enum layer_names {
     _SYM,
     _NAV,
     _GNAV,
-    _ACCENTS,
     _MOUSE,
     _UPPER,
     _LOWER,
@@ -23,7 +22,6 @@ enum layer_names {
 #define NAV MO(_NAV)
 #define GNAV MO(_GNAV)
 #define SYM MO(_SYM)
-#define ACCENTS OSL(_ACCENTS)
 #define MOUSE MO(_MOUSE)
 #define ADJUST MO(_ADJUST)
 #define SYM_ENT LT(_SYM, KC_ENT)
@@ -39,19 +37,16 @@ enum layer_names {
 #define HOME_R LALT_T(KC_R)
 #define HOME_S LSFT_T(KC_S)
 #define HOME_T LCTL_T(KC_T)
-#define HOME_D LT(_ACCENTS, KC_D)
 
 // Right-hand home row mods
 #define HOME_O LGUI_T(KC_O)
 #define HOME_I LALT_T(KC_I)
 #define HOME_E RSFT_T(KC_E)
 #define HOME_N LCTL_T(KC_N)
-#define HOME_H LT(_ACCENTS, KC_H)
 
 #define NAV MO(_NAV)
 #define GNAV MO(_GNAV)
 #define LOWER MO(_LOWER)
-#define ACCENTS OSL(_ACCENTS)
 #define MOUSE MO(_MOUSE)
 #define ADJUST MO(_ADJUST)
 
@@ -252,25 +247,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
          /*else process HOME_N as usual.*/
         return true;
-
-    case HOME_D:
-    // Let HOME_D act as an autorepeatable KC_D when CTRL is held
-    {
-        static bool d_registered;
-        if (record->event.pressed) {
-            if (mod_state & MOD_MASK_CTRL) {
-                register_code(KC_D);
-                d_registered = true;
-                return false;
-            }
-        } else {
-            if (d_registered) {
-                unregister_code(KC_D);
-                d_registered = false;
-                return false;
-            }
-        }
-    }
 
     // Toggle off boolean if any other non-accent key is hit.
     has_typed_accent = false;
@@ -684,18 +660,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                         _______,_______,    _______,_______,
                                         _______,_______,    _______,_______
     ),
-
-
-    [_ACCENTS] = LAYOUT_5x6(
-        _______,_______,_______,_______,_______,_______,            _______,_______,_______,_______,_______,_______,
-        _______,XP(a_CIRC,A_CIRC_U),_______,_______,_______,_______,    _______,_______,XP(u_CIRC,U_CIRC_U),XP(i_UML,I_UML_U),XP(o_UML,O_UML_U),_______,
-        _______,XP(a_GRAV,A_GRAV_U),_______,_______,_______,KC_B,    KC_J,XP(e_GRAV,E_GRAV_U),XP(e_ACUT,E_ACUT_U),XP(i_CIRC,I_CIRC_U),XP(o_CIRC,O_CIRC_U),_______,
-        _______,_______,_______,XP(c_CDIL,C_CDIL_U),_______,_______,      _______,_______,XP(e_CIRC,E_CIRC_U),_______,_______,_______,
-        _______,_______,                                    _______,_______,
-                                        _______,_______,    _______,_______,
-                                        _______,_______,    _______,_______,
-                                        _______,_______,    _______,_______
-  ),
 
     [_MOUSE] = LAYOUT_5x6(
         _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
