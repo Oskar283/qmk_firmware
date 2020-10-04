@@ -619,7 +619,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_ESC, SE_A  , SE_R  , HOME_S, HOME_T, SE_G  ,    SE_M  , HOME_N, HOME_E, SE_I  , SE_O  ,SE_QUOT,
       SE_BSLS, SE_Z  , SE_X  , SE_C  , SE_D, SE_V  ,      SE_K  , SE_H  ,SE_COMM, SE_DOT,SE_SLSH, SE_QUES,
                         SE_LPRN,SE_RPRN,                                   SE_LBRC, SE_RBRC,
-                                          NAV  , KC_SPC,    KC_BSPC, SYM_ENT,
+                                          NAV  , KC_SPC,    TD(TD_C_BSPC), SYM_ENT,
                                         KC_LALT, MOUSE ,    KC_DEL , KC_LGUI,
                                         KC_LALT,KC_LALT,    KC_LGUI, KC_LGUI
   ),
