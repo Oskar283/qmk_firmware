@@ -611,7 +611,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK_DHM] = LAYOUT_5x6(
-         KC_GRV, UNDO  , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,    KC_F6 , KC_F7 , KC_F8 , KC_F9 , KC_F10, KC_F11,
+         KC_GRV, KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,    KC_F6 , KC_F7 , KC_F8 , KC_F9 , KC_F10, KC_F11,
          KC_TAB, KC_Q  , KC_W  , KC_F  , KC_P  , KC_B  ,    KC_J  , KC_L  , KC_U  , KC_Y  ,KC_SCLN,KC_MINS,
          KC_ESC, KC_A  , KC_R  , HOME_S, HOME_T, KC_G  ,    KC_M  , HOME_N, HOME_E, KC_I  , KC_O  ,KC_QUOT,
       KC_BSLASH, KC_Z  , KC_X  , KC_C  , KC_D, KC_V  ,      KC_K  , KC_H  ,KC_COMM, KC_DOT,KC_SLSH, KC_GRV,
