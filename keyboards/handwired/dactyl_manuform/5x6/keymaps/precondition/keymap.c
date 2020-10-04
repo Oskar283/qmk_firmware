@@ -29,6 +29,8 @@ enum layer_names {
 // Miscellaneous keyboard shortcuts in direct access
 #define UNDO LCTL(KC_Z)
 #define REDO LCTL(KC_Y)
+#define C_INS LCTL(INS)
+#define S_INS LSFT(INS)
 
 // Left-hand home row mods
 #define HOME_A LGUI_T(KC_A)
@@ -622,10 +624,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAV] = LAYOUT_5x6(
         _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
-        _______,_______,KC_NLCK,KC_INS ,KC_SLCK,_______,    KC_PGUP,KC_PGDN, KC_NO ,KC_WH_D,KC_WH_U,KC_VOLU,
-        _______,KC_LGUI,KC_LALT,KC_LSFT,KC_LCTL,_______,    KC_HOME,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT,KC_END ,
-        _______,_______,_______,_______,_______,_______,    _______,KC_PSCR,KC_LCBR,KC_RCBR,KC_INS ,KC_VOLD,
-                        _______,_______,                                    KC_BRID,KC_BRIU,
+        _______,_______, C_INS , S_INS ,_______,_______,    _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,    KC_HOME,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT,KC_END ,
+        _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
+                        _______,_______,                                    _______,_______,
                                          _______,_______,   _______,_______,
                                          _______,_______,   _______,_______,
                                            ADJUST,ADJUST,   _______,_______
