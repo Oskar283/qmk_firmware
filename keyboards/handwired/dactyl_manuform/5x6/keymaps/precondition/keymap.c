@@ -29,8 +29,8 @@ enum layer_names {
 // Miscellaneous keyboard shortcuts in direct access
 #define UNDO LCTL(KC_Z)
 #define REDO LCTL(KC_Y)
-#define C_INS LCTL(INS)
-#define S_INS LSFT(INS)
+#define C_INS LCTL(KC_INS)
+#define S_INS LSFT(KC_INS)
 
 // Left-hand home row mods
 #define HOME_A LGUI_T(KC_A)
