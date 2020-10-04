@@ -11,7 +11,6 @@ enum layer_names {
     _COLEMAK_DHM = 0,
     _SYM,
     _NAV,
-    _GNAV,
     _MOUSE,
     _UPPER,
     _LOWER,
@@ -20,7 +19,6 @@ enum layer_names {
 
 // Layer keys
 #define NAV MO(_NAV)
-#define GNAV MO(_GNAV)
 #define SYM MO(_SYM)
 #define MOUSE MO(_MOUSE)
 #define ADJUST MO(_ADJUST)
@@ -45,7 +43,6 @@ enum layer_names {
 #define HOME_N LCTL_T(KC_N)
 
 #define NAV MO(_NAV)
-#define GNAV MO(_GNAV)
 #define LOWER MO(_LOWER)
 #define MOUSE MO(_MOUSE)
 #define ADJUST MO(_ADJUST)
@@ -626,24 +623,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_NAV] = LAYOUT_5x6(
         _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
         _______,_______,KC_NLCK,KC_INS ,KC_SLCK,_______,    KC_PGUP,KC_PGDN, KC_NO ,KC_WH_D,KC_WH_U,KC_VOLU,
-        _______,KC_LGUI,KC_LALT,KC_LSFT,KC_LCTL,  GNAV ,    KC_HOME,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT,KC_END ,
+        _______,KC_LGUI,KC_LALT,KC_LSFT,KC_LCTL,_______,    KC_HOME,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT,KC_END ,
         _______,_______,_______,_______,_______,_______,    _______,KC_PSCR,KC_LCBR,KC_RCBR,KC_INS ,KC_VOLD,
                         _______,_______,                                    KC_BRID,KC_BRIU,
                                          _______,_______,   _______,_______,
                                          _______,_______,   _______,_______,
                                            ADJUST,ADJUST,   _______,_______
   ),
-
-    [_GNAV] = LAYOUT_5x6(
-        _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,    _______,_______, G_UP  ,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,    G_HOME ,_______, G_DOWN,_______, G_END ,_______,
-        _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
-                        _______,_______,                                    _______,_______,
-                                        _______,_______,    _______,_______,
-                                        _______,_______,    _______,_______,
-                                        _______,_______,    _______,_______
-    ),
 
     [_MOUSE] = LAYOUT_5x6(
         _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
