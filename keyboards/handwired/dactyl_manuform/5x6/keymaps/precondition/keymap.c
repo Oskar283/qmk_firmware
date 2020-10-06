@@ -629,11 +629,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_SYM] = LAYOUT_5x6(
 
         _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
-        KC_DOT , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,    KC_6   , KC_7  , KC_8  , KC_9  , KC_0  ,SE_MINS,
-        SE_TILD,SE_EXLM, SE_AT ,SE_HASH,SE_DLR ,SE_PERC,    SE_CIRC,SE_AMPR,SE_ASTR,SE_EQL ,SE_PLUS,SE_DQUO,
-        _______,_______,_______,_______,_______,_______,    _______,_______,SE_LABK,SE_RABK,SE_QUES,_______,
-                        _______,_______,                                    _______,_______, 
-                                        _______,KC_UNDS,    _______,_______,
+        KC_DOT , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,    KC_6   , KC_7  , KC_8  , KC_9  , KC_0  ,SE_ARNG,
+        SE_TILD,SE_EXLM, SE_AT ,SE_HASH,SE_DLR ,SE_PERC,    SE_CIRC,SE_AMPR,SE_ASTR,SE_EQL ,SE_ODIA,SE_ADIA,
+        _______,_______,_______,_______,_______,_______,    _______,_______,SE_LABK,SE_RABK,SE_QUES,SE_PLUS,
+				SE_LABK,SE_RABK,                                    SE_LCBR,SE_RCBR,
+                                        _______,_______,    _______,_______,
                                         _______,_______,    _______,_______,
                                         _______,_______,    ADJUST, ADJUST
   ),
