@@ -1,7 +1,7 @@
 /* A standard layout for the Dactyl Manuform 5x6 Keyboard */ 
 
 #include QMK_KEYBOARD_H
-#include "sendstring_swedish.h"
+#include "keymap_swedish.h"
 
 void matrix_init_user() {
 	set_unicode_input_mode(UC_LNX);
@@ -106,7 +106,11 @@ enum custom_keycodes {
     G_DOWN,
     G_UP,
     G_HOME,
-    G_END
+    G_END,
+    ALT_TAB,
+    NO_D_TILDE,
+    NO_D_CIRC,
+    NO_D_GRV
 };
 
 // Initialize variable holding the binary
@@ -115,6 +119,21 @@ uint8_t mod_state;
 // Initialize boolean variable which
 // tells if the last key hit was an accented letter.
 static bool has_typed_accent;
+/*
+ * Cool Function where a single key does ALT+TAB
+ * From: https://beta.docs.qmk.fm/features/feature_macros#super-alt-tab
+ */
+bool is_alt_tab_active = false;    // ADD this near the begining of keymap.c
+uint16_t alt_tab_timer = 0;        // we will be using them soon.
+
+// The very important timer used for Super Alt Tab.
+void matrix_scan_user(void) {
+  if (is_alt_tab_active && timer_elapsed(alt_tab_timer) > 1000) {
+    unregister_code(KC_LALT);
+    is_alt_tab_active = false;
+  }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     mod_state = get_mods();
     switch (keycode) {
@@ -261,6 +280,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Toggle off boolean if any other non-accent key is hit.
     has_typed_accent = false;
 
+    case ALT_TAB:
+      if (record->event.pressed) {
+        if (!is_alt_tab_active) {
+          is_alt_tab_active = true;
+          register_code(KC_LALT);
+        }
+        alt_tab_timer = timer_read();
+        register_code(KC_TAB);
+      } else {
+        unregister_code(KC_TAB);
+      }
+      break;
+
+    case NO_D_TILDE:
+      if (record->event.pressed) {
+        SEND_STRING("~ ");
+      }
+      break;
+    case NO_D_CIRC:
+      if (record->event.pressed) {
+        SEND_STRING("^ ");
+      }
+      break;
+    case NO_D_GRV:
+      if (record->event.pressed) {
+        SEND_STRING("` ");
+      }
+      break;
     }
     return true;
 };
@@ -616,13 +663,13 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK_DHM] = LAYOUT_5x6(
-         SE_GRV, KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,    KC_F6 , KC_F7 , KC_F8 , KC_F9 , KC_F10, KC_F11,
+       NO_D_GRV, KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,    KC_F6 , KC_F7 , KC_F8 , KC_F9 , KC_F10, KC_F11,
          KC_TAB, SE_Q  , SE_W  , SE_F  , SE_P  , SE_B  ,    SE_J  , SE_L  , SE_U  , SE_Y  ,SE_SCLN,SE_MINS,
          KC_ESC, SE_A  , SE_R  , HOME_S, HOME_T, SE_G  ,    SE_M  , HOME_N, HOME_E, SE_I  , SE_O  ,SE_QUOT,
          SE_BSLS,SE_Z  , SE_X  , SE_C  , SE_D  , SE_V  ,    SE_K  , SE_H  ,SE_COMM, SE_DOT,SE_SLSH,SE_DQUO,
                         SE_LPRN,SE_RPRN,                                   SE_LBRC, SE_RBRC,
                                           NAV  , KC_SPC,    TD(TD_C_BSPC), SYM_ENT,
-                                        KC_LALT, MOUSE ,    KC_DEL , KC_LGUI,
+                                        ALT_TAB, MOUSE ,    KC_DEL , KC_LGUI,
                                         KC_LALT,KC_LALT,    KC_LGUI, KC_LGUI
   ),
 
@@ -630,7 +677,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
         KC_DOT , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,    KC_6   , KC_7  , KC_8  , KC_9  , KC_0  ,SE_ARNG,
-        SE_TILD,SE_EXLM, SE_AT ,SE_HASH,SE_DLR ,SE_PERC,    SE_CIRC,SE_AMPR,SE_ASTR,SE_EQL ,SE_ODIA,SE_ADIA,
+     NO_D_TILDE,SE_EXLM, SE_AT ,SE_HASH,SE_DLR ,SE_PERC,  NO_D_CIRC,SE_AMPR,SE_ASTR,SE_EQL ,SE_ODIA,SE_ADIA,
         SE_PIPE,_______,_______,_______,_______,_______,    _______,_______,SE_LABK,SE_RABK,SE_QUES,SE_PLUS,
 				SE_LABK,SE_RABK,                                    SE_LCBR,SE_RCBR,
                                         _______,_______,    _______,_______,
