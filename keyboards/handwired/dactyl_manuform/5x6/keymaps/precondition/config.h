@@ -20,8 +20,9 @@
 // This prevents short hold periods to be interpreted as individual taps when typing quickly.
 #define PERMISSIVE_HOLD
 
-#define COMBO_COUNT 11
-#define COMBO_TERM 70
+// Defines combos, commented as they are not used
+//#define COMBO_COUNT 11
+//#define COMBO_TERM 70
 
 
 //Shamelessly stolen mouse key settings from @pierrechevalier83:
