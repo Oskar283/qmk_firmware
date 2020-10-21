@@ -294,18 +294,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
 
     case NO_D_TILDE:
+      //Compensate for the swedish layout...
       if (record->event.pressed) {
-        SEND_STRING("~ ");
+        SEND_STRING(SS_ALGR("]")" ");
       }
       break;
     case NO_D_CIRC:
+      //Compensate for the swedish layout...
       if (record->event.pressed) {
-        SEND_STRING("^ ");
+        SEND_STRING("} ");
       }
       break;
     case NO_D_GRV:
+      //Compensate for the swedish layout...
       if (record->event.pressed) {
-        SEND_STRING("` ");
+        SEND_STRING("+ ");
       }
       break;
     }
