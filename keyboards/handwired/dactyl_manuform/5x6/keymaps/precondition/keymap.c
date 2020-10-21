@@ -3,9 +3,9 @@
 #include QMK_KEYBOARD_H
 #include "keymap_swedish.h"
 
-void matrix_init_user() {
-	set_unicode_input_mode(UC_LNX);
-};
+//void matrix_init_user() {
+//	set_unicode_input_mode(UC_LNX);
+//};
 
 enum layer_names {
     _COLEMAK_DHM = 0,
@@ -197,7 +197,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // Else, let QMK process the KC_ESC keycode as usual
         return true;
 
-    case XP(c_CDIL, C_CDIL_U):
+/*    case XP(c_CDIL, C_CDIL_U):
         if (record->event.pressed) {
             if (has_typed_accent) {
                 register_code(KC_C);
@@ -224,6 +224,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
         }
         return true;
+	*/
 
     case HOME_I:
         // This piece of code nullifies the effect of Right Shift when
