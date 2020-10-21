@@ -417,6 +417,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 };
 
+/*
 enum combo_events {
   UY_PRN,
   YCLN_PRN,
@@ -446,24 +447,24 @@ const uint16_t PROGMEM BSPC_H_COMBO[] = {KC_BSPC, KC_H, COMBO_END};
 const uint16_t PROGMEM BSPC_A_COMBO[] = {KC_BSPC, KC_A, COMBO_END};
 const uint16_t PROGMEM BSPC_N_COMBO[] = {KC_BSPC, KC_N, COMBO_END};
 
-combo_t key_combos[COMBO_COUNT] = {
-  [UY_PRN] = COMBO_ACTION(U_Y_COMBO),
-  [YCLN_PRN] = COMBO_ACTION(Y_SCLN_COMBO),
-  [ZX_BCKSLSH] = COMBO_ACTION(Z_X_COMBO),
-  [JU_JUST] = COMBO_ACTION(J_U_COMBO),
-  [HV_HAVE] = COMBO_ACTION(H_V_COMBO),
-  [BSPCU_YOU] = COMBO_ACTION(BSPC_U_COMBO),
-  [BSPCA_AND] = COMBO_ACTION(BSPC_A_COMBO),
-  [BSPCN_NOT] = COMBO_ACTION(BSPC_N_COMBO),
-  [BSPCW_WITH] = COMBO_ACTION(BSPC_W_COMBO),
-  [BSPCF_FOR] = COMBO_ACTION(BSPC_F_COMBO),
-  [BSPCH_HERE] = COMBO_ACTION(BSPC_H_COMBO),
-};
+//combo_t key_combos[COMBO_COUNT] = {
+//  [UY_PRN] = COMBO_ACTION(U_Y_COMBO),
+//  [YCLN_PRN] = COMBO_ACTION(Y_SCLN_COMBO),
+//  [ZX_BCKSLSH] = COMBO_ACTION(Z_X_COMBO),
+//  [JU_JUST] = COMBO_ACTION(J_U_COMBO),
+//  [HV_HAVE] = COMBO_ACTION(H_V_COMBO),
+//  [BSPCU_YOU] = COMBO_ACTION(BSPC_U_COMBO),
+//  [BSPCA_AND] = COMBO_ACTION(BSPC_A_COMBO),
+//  [BSPCN_NOT] = COMBO_ACTION(BSPC_N_COMBO),
+//  [BSPCW_WITH] = COMBO_ACTION(BSPC_W_COMBO),
+//  [BSPCF_FOR] = COMBO_ACTION(BSPC_F_COMBO),
+//  [BSPCH_HERE] = COMBO_ACTION(BSPC_H_COMBO),
+//};
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
     mod_state = get_mods();
     switch(combo_index) {
-        /*case UY_PRN:
+        case UY_PRN:
           if (pressed) {
             if (mod_state & MOD_MASK_SHIFT) {
                 // First canceling both shifts so that shift isn't applied
@@ -626,10 +627,10 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
               }
           } else {
           }
-          break;*/
-
+          break;
     }
-}
+}*/
+
 
 /*
  * Per key tapping term settings
