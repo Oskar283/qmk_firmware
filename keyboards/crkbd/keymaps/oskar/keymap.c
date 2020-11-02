@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "keycodes.h"
+#include "keymap_swedish.h"
 
 #ifdef OLED_DRIVER_ENABLE
 #    include "oled.c"
@@ -11,27 +12,26 @@
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_QWERTY] = LAYOUT(
+  [_COLEMAK_DHM_SWE] = LAYOUT(
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
-     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+     KC_TAB,  SE_Q,    SE_W,    SE_F,    SE_P,    SE_B,                         SE_J,    SE_L,    SE_U,    SE_Y,    SE_SCLN, SE_MINS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     SFT_EQ,  SFT_A,   KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,    SFT_SCLN,SFT_QT,
+     KC_ESC,  SE_A,    SE_R,    HOME_S,  HOME_T,  SE_G,                         SE_M,    HOME_N,  HOME_E,  SE_I,    SE_O,    SE_QUOT,
   //---------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_LCTL, CTL_Z,   KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    KC_COMM, KC_DOT,  CTL_SLSH,ADJ_GRV,
+     SE_BSLS, SE_Z,    SE_X,    SE_C,    SE_D,    SE_V,                         SE_K,    SE_H,    SE_COMM, SE_DOT,  SE_SLSH, SE_DQUO,
   //---------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                         KC_LALT, LOW_SPC, RAI_EQ,     RAI_ENT, LOW_BSP, KC_LGUI
+                                         ALT_TAB, RAISE,   KC_SPC,     KC_BSPC, LOW_ENT, KC_LGUI
                                       //|--------------------------|  |--------------------------|
-
 
   ),
 
   [_LOWER] = LAYOUT(
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
-     KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
+     NO_D_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    SE_ARNG,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     _______, KC_ANGL, KC_ANGR, KC_LPRN, KC_RPRN, KC_PGUP,                      KC_MINS, KC_LEFT, KC_UP,   KC_RIGHT,KC_PLUS, _______,
+   NO_D_TILDE,SE_EXLM, SE_AT,   SE_HASH, SE_DLR,  SE_PERC,                     NO_D_CIRC,SE_AMPR, SE_ASTR, SE_EQL,  SE_ODIA, SE_ADIA,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     _______, XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, KC_PGDOWN,                    KC_UNDS, KC_HOME, KC_DOWN, KC_END,  XXXXXXX, _______,
+     SE_PIPE, _______, SE_LPRN, SE_RPRN, SE_LABK, SE_RABK,                      SE_LCBR, SE_RCBR, SE_LBRC, SE_RBRC, SE_QUES, SE_PLUS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                          _______, _______, _______,    _______, LOW_DEL, _______
                                       //|--------------------------|  |--------------------------|
@@ -39,16 +39,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT(
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
-     KC_ESC,  KC_HASH, KC_DLR,  KC_LCBR, KC_RCBR, XXXXXXX,                      XXXXXXX, KC_AMPR, KC_PIPE, KC_EXLM, KC_ASTR, XXXXXXX,
+     _______, _______, C_INS,   S_INS,   _______, _______,                      _______, _______, _______, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     _______, KC_EXLM, KC_AT,   KC_LPRN, KC_RPRN, XXXXXXX,                      XXXXXXX, KC_UNDS, KC_EQL,  KC_ANGL, KC_ANGR, XXXXXXX,
+     _______, _______, _______, _______, _______, _______,     KC_HOME, KC_LEFT, KC_DOWN,  KC_UP , KC_RGHT, KC_END ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, XXXXXXX,                      XXXXXXX, KC_MINS, KC_PLUS, XXXXXXX, KC_BSLS, _______,
+     _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
+                                         _______, _______, _______,    _______, _______, _______
                                       //|--------------------------|  |--------------------------|
   ),
 
+  // CURRENTLY UNUSED!!!!
   [_ADJUST] = LAYOUT(
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
      XXXXXXX, CK_RST,  CK_DOWN, CK_UP,   CK_TOGG, RGB_TOG,                       MU_TOG, KC_F12,  KC_F7,   KC_F8,   KC_F9,   XXXXXXX,\
