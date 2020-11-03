@@ -140,9 +140,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
              /*else process HOME_T as usual.*/
             return true;
     
-        // Toggle off boolean if any other non-accent key is hit.
-        has_typed_accent = false;
-    
         case ALT_TAB:
           if (record->event.pressed) {
             if (!is_alt_tab_active) {
