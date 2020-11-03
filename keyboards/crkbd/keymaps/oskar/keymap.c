@@ -78,6 +78,24 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 #endif
 
+// Initialize variable holding the binary
+// representation of active modifiers.
+uint8_t mod_state;
+/*
+ * Cool Function where a single key does ALT+TAB
+ * From: https://beta.docs.qmk.fm/features/feature_macros#super-alt-tab
+ */
+bool is_alt_tab_active = false;    // ADD this near the begining of keymap.c
+uint16_t alt_tab_timer = 0;        // we will be using them soon.
+
+// The very important timer used for Super Alt Tab.
+void matrix_scan_user(void) {
+  if (is_alt_tab_active && timer_elapsed(alt_tab_timer) > 1000) {
+    unregister_code(KC_LALT);
+    is_alt_tab_active = false;
+  }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef OLED_DRIVER_ENABLE
     if (record->event.pressed) {
@@ -86,7 +104,78 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 #endif
 
+    mod_state = get_mods();
     switch (keycode) {
+        case HOME_N:
+             /*This piece of code nullifies the effect of Right Shift when*/
+             /*tapping the HOME_N key. This helps rolling over HOME_E and HOME_N */
+             /*to obtain the intended "en" instead of "N". Consequently, capital N can */
+             /*only be obtained by tapping HOME_N and holding HOME_S (which is the left shift mod tap).*/
+            if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
+                if (mod_state & MOD_BIT(KC_RSHIFT)) {
+                    unregister_code(KC_RSHIFT);
+                    tap_code(KC_E);
+                    tap_code(KC_N);
+                    set_mods(mod_state);
+                    return false;
+                }
+            }
+             /*else process HOME_N as usual.*/
+            return true;
+    
+        case HOME_T:
+             /*This piece of code nullifies the effect of Left Shift when*/
+             /*tapping the HOME_T key. This helps rolling over HOME_S and HOME_T */
+             /*to obtain the intended "st" instead of "T". Consequently, capital T can */
+             /*only be obtained by tapping HOME_T and holding HOME_E (which is the right shift mod tap).*/
+            if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
+                if (mod_state & MOD_BIT(KC_LSHIFT)) {
+                    unregister_code(KC_LSHIFT);
+                    tap_code(KC_S);
+                    tap_code(KC_T);
+                    set_mods(mod_state);
+                    return false;
+                }
+            }
+             /*else process HOME_T as usual.*/
+            return true;
+    
+        // Toggle off boolean if any other non-accent key is hit.
+        has_typed_accent = false;
+    
+        case ALT_TAB:
+          if (record->event.pressed) {
+            if (!is_alt_tab_active) {
+              is_alt_tab_active = true;
+              register_code(KC_LALT);
+            }
+            alt_tab_timer = timer_read();
+            register_code(KC_TAB);
+          } else {
+            unregister_code(KC_TAB);
+          }
+          break;
+    
+        case NO_D_TILDE:
+          //Compensate for the swedish layout...
+          if (record->event.pressed) {
+            SEND_STRING(SS_ALGR("]")" ");
+          }
+          break;
+        case NO_D_CIRC:
+          //Compensate for the swedish layout...
+          if (record->event.pressed) {
+            SEND_STRING("} ");
+          }
+          break;
+        case NO_D_GRV:
+          //Compensate for the swedish layout...
+          if (record->event.pressed) {
+            SEND_STRING("+ ");
+          }
+          break;
+
+
         case LOWER:
             if (record->event.pressed) {
                 layer_on(_LOWER);
