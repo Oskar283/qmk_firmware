@@ -1,6 +1,7 @@
 #pragma once
 
 extern uint8_t is_master;
+char wpm_str[10];
 
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
 #    include "rgb.c"
@@ -191,7 +192,12 @@ void render_status_secondary(void) {
 
     oled_write_ln("", false);
     oled_write_ln("", false);
+#if defined(WPM_ENABLE)
+    sprintf(wpm_str, "WPM: %03d", get_current_wpm());
+    oled_write_ln(wpm_str, false);
+#else
     oled_write_ln("", false);
+#endif
 
     #if defined(RGB_MATRIX_ENABLE) || defined(RGBLIGHT_ENABLE)
         layer_state_is(_ADJUST) ? render_feature_status() : render_mod_status();
