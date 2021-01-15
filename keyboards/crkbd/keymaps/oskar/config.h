@@ -25,12 +25,6 @@
 
 
 
-#ifdef AUDIO_ENABLE
-#    define B5_AUDIO
-#    define NO_MUSIC_MODE
-#    define AUDIO_CLICKY
-#endif
-
 #define OLED_FONT_H "keyboards/crkbd/keymaps/gotham/glcdfont.c"
 
 #define RGBLIGHT_SLEEP
