@@ -228,6 +228,7 @@ void oled_task_user(void) {
         oled_off();
         return;
     }
+    //SPLIT_KEYBOARD is used for i2c oled
     #ifndef SPLIT_KEYBOARD
     else {
         oled_on();
