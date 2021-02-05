@@ -449,7 +449,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_COLEMAK_DHM] = LAYOUT_5x6(
        NO_D_GRV, KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,    KC_F6 , KC_F7 , KC_F8 , KC_F9 , KC_F10, KC_F11,
          KC_TAB, SE_Q  , SE_W  , SE_F  , SE_P  , SE_B  ,    SE_J  , SE_L  , SE_U  , SE_Y  ,SE_SCLN,SE_MINS,
-         KC_ESC, SE_A  , SE_R  , HOME_S, HOME_T, SE_G  ,    SE_M  , HOME_N, HOME_E, SE_I  , SE_O  ,SE_QUOT,
+         KC_ESC, SE_A  , HOME_R, HOME_S, HOME_T, SE_G  ,    SE_M  , HOME_N, HOME_E, HOME_I, SE_O  ,SE_QUOT,
          SE_BSLS,SE_Z  , SE_X  , SE_C  , SE_D  , SE_V  ,    SE_K  , SE_H  ,SE_COMM, SE_DOT,SE_SLSH,SE_DQUO,
                         SE_LPRN,SE_RPRN,                                   SE_LBRC, SE_RBRC,
                                           NAV  , KC_SPC,    KC_BSPC, SYM_ENT,
