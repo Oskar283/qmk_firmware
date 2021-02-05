@@ -8,7 +8,7 @@ enum layers {
 };
 
 enum custom_keycodes { COLEMAK_DHM_SWE = SAFE_RANGE, LOWER, RAISE, ADJUST, RGBRST, //Gotham keycodes
-	               ALT_TAB, NO_D_TILDE, NO_D_CIRC, NO_D_GRV //Oskar keycodes
+	               NO_D_TILDE, NO_D_CIRC, NO_D_GRV //Oskar keycodes
 };
 
 // Gotham defines
