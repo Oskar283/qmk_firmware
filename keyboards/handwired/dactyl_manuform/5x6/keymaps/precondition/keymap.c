@@ -138,12 +138,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     mod_state = get_mods();
     switch (keycode) {
 
-    case ARROW_R:
-      if (record->event.pressed) {
-        SEND_STRING("->");
-      }
-      break;
-
     case G_DOWN:
         if (record->event.pressed) {
             register_code(KC_G);
