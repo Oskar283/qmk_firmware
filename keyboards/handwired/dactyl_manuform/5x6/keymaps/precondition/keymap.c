@@ -191,34 +191,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // Else, let QMK process the KC_ESC keycode as usual
         return true;
 
-/*    case XP(c_CDIL, C_CDIL_U):
-        if (record->event.pressed) {
-            if (has_typed_accent) {
-                register_code(KC_C);
-                return false;
-            }
-            has_typed_accent = true;
-        } else {
-            if (has_typed_accent) {
-                unregister_code(KC_C);
-            }
-        }
-        return true;
-
-    case XP(e_ACUT, E_ACUT_U):
-        if (record->event.pressed) {
-            if (has_typed_accent) {
-                register_code(KC_E);
-                return false;
-            }
-            has_typed_accent = true;
-        } else {
-            if (has_typed_accent) {
-                unregister_code(KC_E);
-            }
-        }
-        return true;
-	*/
 
     case HOME_I:
         // This piece of code nullifies the effect of Right Shift when
@@ -430,13 +402,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM - 65;
         // These next mod taps are used very frequently during typing.
         // As such, the lower the tapping term, the faster the typing.
-        case HOME_S:
-            return TAPPING_TERM - 28;
-        case HOME_E:
-            return TAPPING_TERM - 26;
-        case HOME_D:
-            return TAPPING_TERM - 20;
-        case HOME_H:
             return TAPPING_TERM - 20;*/
         default:
             return TAPPING_TERM;
