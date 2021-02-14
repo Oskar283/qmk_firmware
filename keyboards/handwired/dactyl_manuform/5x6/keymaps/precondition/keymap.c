@@ -110,7 +110,8 @@ enum custom_keycodes {
     ALT_TAB,
     NO_D_TILDE,
     NO_D_CIRC,
-    NO_D_GRV
+    NO_D_GRV,
+    E_ACUTE
 };
 
 // Initialize variable holding the binary
@@ -278,6 +279,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("+ ");
       }
       break;
+    case E_ACUTE:
+      if(record->event.pressed) {
+        SEND_STRING("=e");
+      }
+      break;
     }
     return true;
 };
@@ -436,7 +442,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAV] = LAYOUT_5x6(
         _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
-        _______,_______, C_INS , S_INS ,_______,_______,    _______,_______,_______,_______,_______,_______,
+        _______,_______, C_INS , S_INS ,_______,E_ACUTE,    _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,    KC_HOME,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT,KC_END ,
         _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
                         _______,_______,                                    _______,_______,
