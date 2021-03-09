@@ -58,9 +58,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   BACKLIT, SE_LPRN, SE_RPRN, ALT_TAB, NAV,     KC_SPC,  KC_BSPC, SYM_ENT, SE_LBRC, SE_RBRC, SE_LCBR, SE_CBR
 ),
 
-/* Dvorak
- */
-
 /* Lower
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Bksp |
