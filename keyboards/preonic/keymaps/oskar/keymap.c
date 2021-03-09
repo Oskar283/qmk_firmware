@@ -19,9 +19,7 @@
 #include "keymap_swedish.h"
 
 enum preonic_layers {
-  _QWERTY,
-  _COLEMAK,
-  _DVORAK,
+  _COLEMAK_DHM,
   _LOWER,
   _RAISE,
   _ADJUST
