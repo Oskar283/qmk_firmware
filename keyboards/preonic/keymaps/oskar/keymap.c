@@ -273,7 +273,22 @@ void dip_switch_update_user(uint8_t index, bool active) {
 }
 
 
+// Initialize variable holding the binary
+// representation of active modifiers.
+uint8_t mod_state;
+/*
+ * Cool Function where a single key does ALT+TAB
+ * From: https://beta.docs.qmk.fm/features/feature_macros#super-alt-tab
+ */
+bool is_alt_tab_active = false;    // ADD this near the begining of keymap.c
+uint16_t alt_tab_timer = 0;        // we will be using them soon.
+
 void matrix_scan_user(void) {
+    // The very important timer used for Super Alt Tab.
+    if (is_alt_tab_active && timer_elapsed(alt_tab_timer) > 1000) {
+        unregister_code(KC_LALT);
+        is_alt_tab_active = false;
+    }
 #ifdef AUDIO_ENABLE
     if (muse_mode) {
         if (muse_counter == 0) {
