@@ -48,10 +48,11 @@
 #define ADJUST MO(_ADJUST)
 
 enum preonic_layers {
-  _COLEMAK_DHM,
-  _LOWER,
-  _RAISE,
-  _ADJUST
+    _COLEMAK_DHM = 0,
+    _SYM,
+    _NAV,
+    _MOUSE,
+    _ADJUST,
 };
 
 enum preonic_keycodes {
