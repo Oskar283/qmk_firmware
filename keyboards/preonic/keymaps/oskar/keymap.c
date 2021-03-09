@@ -18,6 +18,35 @@
 #include "muse.h"
 #include "keymap_swedish.h"
 
+
+// Layer keys
+#define NAV MO(_NAV)
+#define SYM MO(_SYM)
+#define MOUSE MO(_MOUSE)
+#define ADJUST MO(_ADJUST)
+#define SYM_ENT LT(_SYM, KC_ENT)
+
+// Miscellaneous keyboard shortcuts in direct access
+#define UNDO LCTL(SE_Z)
+#define REDO LCTL(SE_Y)
+#define C_INS LCTL(KC_INS)
+#define S_INS LSFT(KC_INS)
+
+// Left-hand home row mods
+#define HOME_A LGUI_T(SE_A)
+#define HOME_R LALT_T(SE_R)
+#define HOME_S LSFT_T(SE_S)
+#define HOME_T LCTL_T(SE_T)
+
+// Right-hand home row mods
+#define HOME_O LGUI_T(SE_O)
+#define HOME_I LALT_T(SE_I)
+#define HOME_E RSFT_T(SE_E)
+#define HOME_N LCTL_T(SE_N)
+
+#define NAV MO(_NAV)
+#define ADJUST MO(_ADJUST)
+
 enum preonic_layers {
   _COLEMAK_DHM,
   _LOWER,
