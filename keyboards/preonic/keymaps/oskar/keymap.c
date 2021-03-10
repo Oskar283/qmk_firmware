@@ -206,24 +206,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-        case QWERTY:
-          if (record->event.pressed) {
-            //set_single_persistent_default_layer(_QWERTY);
-          }
-          return false;
-          break;
-        case COLEMAK:
-          if (record->event.pressed) {
-            //set_single_persistent_default_layer(_COLEMAK);
-          }
-          return false;
-          break;
-        case DVORAK:
-          if (record->event.pressed) {
-            //set_single_persistent_default_layer(_DVORAK);
-          }
-          return false;
-          break;
+      //  case QWERTY:
+      //    if (record->event.pressed) {
+      //      //set_single_persistent_default_layer(_QWERTY);
+      //    }
+      //    return false;
+      //    break;
+      //  case COLEMAK:
+      //    if (record->event.pressed) {
+      //      //set_single_persistent_default_layer(_COLEMAK);
+      //    }
+      //    return false;
+      //    break;
+      //  case DVORAK:
+      //    if (record->event.pressed) {
+      //      //set_single_persistent_default_layer(_DVORAK);
+      //    }
+      //    return false;
+      //    break;
       //  case LOWER:
       //    if (record->event.pressed) {
       //      layer_on(_LOWER);
@@ -261,7 +261,95 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           }
           return false;
           break;
+    case HOME_I:
+        // This piece of code nullifies the effect of Right Shift when
+        // tapping the HOME_I key. This helps rolling over HOME_E and HOME_I
+        // to obtain the intended "ei" instead of "I". Consequently, capital I can
+        // only be obtained by tapping HOME_I and holding HOME_S (which is the left shift mod tap).
+        if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
+            if (mod_state & MOD_BIT(KC_RSHIFT)) {
+                unregister_code(KC_RSHIFT);
+                tap_code(KC_E);
+                tap_code(KC_I);
+                set_mods(mod_state);
+                return false;
+            }
+        }
+        // else process HOME_I as usual.
+        return true;
+
+
+    case HOME_N:
+         /*This piece of code nullifies the effect of Right Shift when*/
+         /*tapping the HOME_N key. This helps rolling over HOME_E and HOME_N */
+         /*to obtain the intended "en" instead of "N". Consequently, capital N can */
+         /*only be obtained by tapping HOME_N and holding HOME_S (which is the left shift mod tap).*/
+        if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
+            if (mod_state & MOD_BIT(KC_RSHIFT)) {
+                unregister_code(KC_RSHIFT);
+                tap_code(KC_E);
+                tap_code(KC_N);
+                set_mods(mod_state);
+                return false;
+            }
+        }
+         /*else process HOME_N as usual.*/
+        return true;
+
+    case HOME_T:
+         /*This piece of code nullifies the effect of Left Shift when*/
+         /*tapping the HOME_T key. This helps rolling over HOME_S and HOME_T */
+         /*to obtain the intended "st" instead of "T". Consequently, capital T can */
+         /*only be obtained by tapping HOME_T and holding HOME_E (which is the right shift mod tap).*/
+        if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
+            if (mod_state & MOD_BIT(KC_LSHIFT)) {
+                unregister_code(KC_LSHIFT);
+                tap_code(KC_S);
+                tap_code(KC_T);
+                set_mods(mod_state);
+                return false;
+            }
+        }
+         /*else process HOME_T as usual.*/
+        return true;
+
+    case ALT_TAB:
+      if (record->event.pressed) {
+        if (!is_alt_tab_active) {
+          is_alt_tab_active = true;
+          register_code(KC_LALT);
+        }
+        alt_tab_timer = timer_read();
+        register_code(KC_TAB);
+      } else {
+        unregister_code(KC_TAB);
       }
+      break;
+
+    case ND_TILD:
+      //Compensate for the swedish layout...
+      if (record->event.pressed) {
+        SEND_STRING(SS_ALGR("]")" ");
+      }
+      break;
+    case ND_CIRC:
+      //Compensate for the swedish layout...
+      if (record->event.pressed) {
+        SEND_STRING("} ");
+      }
+      break;
+    case NO_D_GRV:
+      //Compensate for the swedish layout...
+      if (record->event.pressed) {
+        SEND_STRING("+ ");
+      }
+      break;
+    case E_ACUTE:
+      if(record->event.pressed) {
+        SEND_STRING("=e");
+      }
+      break;
+    }
     return true;
 };
 
