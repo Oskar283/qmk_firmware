@@ -411,3 +411,20 @@ bool music_mask_user(uint16_t keycode) {
       return true;
   }
 }
+
+/*
+ * Per key tapping term settings
+ */
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case HOME_I:
+            return TAPPING_TERM + 30;
+        case HOME_R:
+            return TAPPING_TERM + 30;
+        case SYM_ENT:
+            // Very low tapping term to make sure I don't hit Enter accidentally.
+            return TAPPING_TERM - 20;
+        default:
+            return TAPPING_TERM;
+    }
+};
