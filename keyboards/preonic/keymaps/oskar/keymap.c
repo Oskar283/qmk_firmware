@@ -45,7 +45,6 @@
 #define HOME_N LCTL_T(SE_N)
 
 #define NAV MO(_NAV)
-#define ADJUST MO(_ADJUST)
 
 enum preonic_layers {
     _COLEMAK_DHM = 0,
@@ -113,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,KC_1,    KC_2,  KC_3,    KC_4,   KC_5,   KC_6,    KC_7,   KC_8,   KC_9,   KC_0,  SE_ARNG, \
  ND_TILD,SE_EXLM, SE_AT, SE_HASH, SE_DLR,SE_PERC, ND_CIRC,SE_AMPR,SE_ASTR,SE_EQL, SE_ODIA,SE_ADIA, \
   SE_PIPE,_______,_______,_______,_______,_______,_______,_______,SE_LABK,SE_RABK,SE_QUES,SE_PLUS, \
-  _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______ \
+  ADJUST,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______ \
 ),
 
 /* Nav
@@ -192,13 +191,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-/*[_ADJUST] = LAYOUT_preonic_grid( \
+[_ADJUST] = LAYOUT_preonic_grid( \
   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  \
-  _______, RESET,   DEBUG,   _______, _______, _______, _______, TERM_ON, TERM_OFF,_______, _______, KC_DEL,  \
-  _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, DVORAK,  _______, _______, \
+  _______, _______,   DEBUG,   _______, _______, _______, _______, TERM_ON, TERM_OFF,_______, _______, KC_DEL,  \
+  _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, _______, _______, _______,  _______, _______, \
   _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
-)*/
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RESET  \
+)
 
 
 };
