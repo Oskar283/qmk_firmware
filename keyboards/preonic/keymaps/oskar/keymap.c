@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  SE_Q,    SE_W,    SE_F,    SE_P,    SE_B,    SE_J,    SE_L,    SE_U,    SE_Y,    SE_SCLN, SE_MINS, \
   KC_ESC,  SE_A,    HOME_R,  HOME_S,  HOME_T,  SE_G,    SE_M,    HOME_N,  HOME_E,  HOME_I,  SE_O,    SE_QUOT, \
   SE_BSLS, SE_Z,    SE_X,    SE_C,    SE_D,    SE_V,    SE_K,    SE_H,    SE_COMM, SE_DOT,  SE_SLSH, SE_DQUO, \
-  BACKLIT, SE_LPRN, SE_RPRN, ALT_TAB, NAV,     KC_SPC,  KC_BSPC, SYM_ENT, SE_LBRC, SE_RBRC, SE_LCBR, SE_RCBR \
+  ALT_TAB, BACKLIT, SE_LPRN, SE_RPRN, NAV,     KC_SPC,  KC_BSPC, SYM_ENT, SE_LBRC, SE_RBRC, SE_LCBR, SE_RCBR \
 ),
 
 /* Sym
