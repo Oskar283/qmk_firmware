@@ -46,6 +46,13 @@
 
 #define NAV MO(_NAV)
 
+// Songs
+#ifdef AUDIO_ENABLE
+float rick_roll[][2] = SONG(RICK_ROLL);
+float all_star[][2] = SONG(ALL_STAR);
+float lp_numb[][2] = SONG(LP_NUMB);
+#endif
+
 enum preonic_layers {
     _COLEMAK_DHM = 0,
     _SYM,
@@ -67,7 +74,10 @@ enum preonic_keycodes {
   ND_TILD,
   ND_CIRC,
   NO_D_GRV,
-  E_ACUTE
+  E_ACUTE,
+  S_RROLL,
+  S_ASTAR,
+  S_NUMB
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -180,25 +190,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
- * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |
+ * |      |      |      |      |      |             |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | Reset|      |      |      |      |      |      |      |      |      |  Del |
+ * |      | Reset|      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |Aud on|AudOff|AGnorm|AGswap|Qwerty|Colemk|Dvorak|      |      |
+ * |      |      |      |Aud on|AudOff|      |      |      |      |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|MusOff|MidiOn|MidOff|      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |      |
+ * |      |      |      |      |      |             |      |      |      |      | Reset|
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_preonic_grid( \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, DEBUG,   _______, _______, _______, _______, TERM_ON, TERM_OFF,_______, _______, KC_DEL,  \
-  _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, _______, _______, _______, _______, _______, \
-  _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, _______, _______, _______, S_RROLL, S_ASTAR, S_NUMB,  _______, _______,  \
+  _______, _______, MU_MOD,  AU_ON,   AU_OFF,  _______, _______, _______, _______, _______, _______, _______, \
+  _______, MUV_IN,  MU_ON,   MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RESET    \
 )
-
 
 };
 
@@ -318,6 +327,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case E_ACUTE:
       if(record->event.pressed) {
         SEND_STRING("=e");
+      }
+      break;
+    case S_RROLL:
+      if(record->event.pressed) {
+        PLAY_SONG(rick_roll);
+      }
+      break;
+    case S_ASTAR:
+      if(record->event.pressed) {
+        PLAY_SONG(all_star);
+      }
+      break;
+    case S_NUMB:
+      if(record->event.pressed) {
+        PLAY_SONG(lp_numb);
       }
       break;
     }
