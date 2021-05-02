@@ -400,19 +400,13 @@ qk_tap_dance_action_t tap_dance_actions[] = {
  */
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        /*case HOME_I:
+        case HOME_I:
             // My ring finger tends to linger on the key 
             // This tapping term allows me to type "ion" effortlessly.
             return TAPPING_TERM + 200;
-        case HOME_O:
-            return TAPPING_TERM + 10;
-        case SYM_ENT:
-            // Very low tapping term to make sure I don't hit Enter accidentally.
-            return TAPPING_TERM - 65;
-        // These next mod taps are used very frequently during typing.
-        // As such, the lower the tapping term, the faster the typing.
-            return TAPPING_TERM - 20;*/
-        default:
+        case HOME_R:
+            return TAPPING_TERM + 200;
+	default:
             return TAPPING_TERM;
     }
 }
