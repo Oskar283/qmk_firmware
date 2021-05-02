@@ -415,9 +415,9 @@ bool music_mask_user(uint16_t keycode) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HOME_I:
-            return TAPPING_TERM + 30;
+            return TAPPING_TERM + 200;
         case HOME_R:
-            return TAPPING_TERM + 30;
+            return TAPPING_TERM + 200;
         case SYM_ENT:
             // Very low tapping term to make sure I don't hit Enter accidentally.
             return TAPPING_TERM - 20;
