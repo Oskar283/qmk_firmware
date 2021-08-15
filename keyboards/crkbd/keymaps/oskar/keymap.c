@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
    NO_D_TILDE,SE_EXLM, SE_AT,   SE_HASH, SE_DLR,  SE_PERC,                     NO_D_CIRC,SE_AMPR, SE_ASTR, SE_EQL,  SE_ODIA, SE_ADIA,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     SE_PIPE, _______, SE_LPRN, SE_RPRN, SE_LABK, SE_RABK,                      SE_LCBR, SE_RCBR, SE_LBRC, SE_RBRC, SE_QUES, SE_PLUS,
+     SE_PIPE, _______, SE_LPRN, SE_RPRN,SE_LBRC ,SE_RBRC ,                      SE_LCBR, SE_RCBR, SE_LABK, SE_RABK, SE_QUES, SE_PLUS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                          _______, _______, _______,    _______, LOW_DEL, _______
                                       //|--------------------------|  |--------------------------|
