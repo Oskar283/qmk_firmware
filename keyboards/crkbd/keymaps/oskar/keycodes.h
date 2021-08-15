@@ -33,10 +33,14 @@ enum custom_keycodes { COLEMAK_DHM_SWE = SAFE_RANGE, LOWER, RAISE, ADJUST, RGBRS
 
 // Oskar defines
 // Left-hand home row mods
+#define HOME_A LGUI_T(SE_A)
+#define HOME_R LALT_T(SE_R)
 #define HOME_S LSFT_T(SE_S)
 #define HOME_T LCTL_T(SE_T)
 
 // Right-hand home row mods
+#define HOME_O LGUI_T(SE_O)
+#define HOME_I LALT_T(SE_I)
 #define HOME_E RSFT_T(SE_E)
 #define HOME_N LCTL_T(SE_N)
 
