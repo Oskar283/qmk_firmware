@@ -24,7 +24,7 @@ enum custom_keycodes { COLEMAK_DHM_SWE = SAFE_RANGE, LOWER, RAISE, ADJUST, RGBRS
 #define LOW_SPC LT(_LOWER, KC_SPC)
 #define RAI_EQ LT(_RAISE, KC_EQL)
 #define RAI_ENT LT(_RAISE, KC_ENT)
-#define LOW_ENT LT(_LOWER, KC_ENT)
+#define SYM_ENT LT(_LOWER, KC_ENT)
 #define LOW_BSP LT(_LOWER, KC_BSPC)
 #define LOW_DEL LT(_LOWER, KC_DEL)
 #define ADJ_GRV LT(_ADJUST, KC_GRV)

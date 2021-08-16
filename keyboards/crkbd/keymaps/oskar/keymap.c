@@ -20,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //---------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      SE_BSLS, SE_Z,    SE_X,    SE_C,    SE_D,    SE_V,                         SE_K,    SE_H,    SE_COMM, SE_DOT,  SE_SLSH, SE_DQUO,
   //---------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                         KC_LALT, RAISE,   KC_SPC,     KC_BSPC, LOW_ENT, KC_LGUI
+                                         KC_LALT, RAISE,   KC_SPC,     KC_BSPC, SYM_ENT, KC_LGUI
                                       //|--------------------------|  |--------------------------|
 
   ),
@@ -201,3 +201,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
+
+/*
+ * Per key tapping term settings
+ */
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case HOME_I:
+            return TAPPING_TERM + 200;
+        case HOME_R:
+            return TAPPING_TERM + 200;
+        case SYM_ENT:
+            // Very low tapping term to make sure I don't hit Enter accidentally.
+            return TAPPING_TERM - 20;
+        default:
+            return TAPPING_TERM;
+    }
+};
