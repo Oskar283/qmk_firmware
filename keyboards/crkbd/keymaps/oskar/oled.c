@@ -1,9 +1,5 @@
 #pragma once
 
-<<<<<<< HEAD
-extern uint8_t is_master;
-=======
->>>>>>> rebaseUpstream
 char wpm_str[10];
 
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
