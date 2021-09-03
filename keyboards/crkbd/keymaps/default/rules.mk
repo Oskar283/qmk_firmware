@@ -11,4 +11,3 @@ SRC +=  ./lib/glcdfont.c \
 
 VIA_ENABLE = yes
 LINK_TIME_OPTIMIZATION = yes
-

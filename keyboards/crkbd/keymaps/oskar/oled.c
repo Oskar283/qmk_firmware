@@ -1,6 +1,9 @@
 #pragma once
 
+<<<<<<< HEAD
 extern uint8_t is_master;
+=======
+>>>>>>> rebaseUpstream
 char wpm_str[10];
 
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
@@ -241,7 +244,7 @@ void oled_task_user(void) {
     }
     #endif
 
-    if (is_master) {
+    if (is_keyboard_master()) {
         render_status_main();
     } else {
         render_status_secondary();
