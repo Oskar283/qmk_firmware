@@ -195,8 +195,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // Else, let QMK process the KC_ESC keycode as usual
         return true;
 
-
-    case HOME_I:
+/*
+      case HOME_I:
         // This piece of code nullifies the effect of Right Shift when
         // tapping the HOME_I key. This helps rolling over HOME_E and HOME_I 
         // to obtain the intended "ei" instead of "I". Consequently, capital I can 
@@ -212,13 +212,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         // else process HOME_I as usual.
         return true;
-
-
+*/
+/*
     case HOME_N:
-         /*This piece of code nullifies the effect of Right Shift when*/
-         /*tapping the HOME_N key. This helps rolling over HOME_E and HOME_N */
-         /*to obtain the intended "en" instead of "N". Consequently, capital N can */
-         /*only be obtained by tapping HOME_N and holding HOME_S (which is the left shift mod tap).*/
+         //This piece of code nullifies the effect of Right Shift when
+         //tapping the HOME_N key. This helps rolling over HOME_E and HOME_N 
+         //to obtain the intended "en" instead of "N". Consequently, capital N can 
+         //only be obtained by tapping HOME_N and holding HOME_S (which is the left shift mod tap).
         if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
             if (mod_state & MOD_BIT(KC_RSHIFT)) {
                 unregister_code(KC_RSHIFT);
@@ -228,14 +228,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
         }
-         /*else process HOME_N as usual.*/
+         //else process HOME_N as usual.
         return true;
+*/
 
+/*
     case HOME_T:
-         /*This piece of code nullifies the effect of Left Shift when*/
-         /*tapping the HOME_T key. This helps rolling over HOME_S and HOME_T */
-         /*to obtain the intended "st" instead of "T". Consequently, capital T can */
-         /*only be obtained by tapping HOME_T and holding HOME_E (which is the right shift mod tap).*/
+         //This piece of code nullifies the effect of Left Shift when
+         //tapping the HOME_T key. This helps rolling over HOME_S and HOME_T 
+         //to obtain the intended "st" instead of "T". Consequently, capital T can 
+         //only be obtained by tapping HOME_T and holding HOME_E (which is the right shift mod tap).
         if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
             if (mod_state & MOD_BIT(KC_LSHIFT)) {
                 unregister_code(KC_LSHIFT);
@@ -245,9 +247,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
         }
-         /*else process HOME_T as usual.*/
+         //else process HOME_T as usual.
         return true;
 
+*/
     // Toggle off boolean if any other non-accent key is hit.
     has_typed_accent = false;
 

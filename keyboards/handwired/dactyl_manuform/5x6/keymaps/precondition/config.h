@@ -20,6 +20,9 @@
 // This prevents short hold periods to be interpreted as individual taps when typing quickly.
 #define PERMISSIVE_HOLD
 
+// Disable same side mod tap activations, unless held for 1 second
+#define BILATERAL_COMBINATIONS 1000
+
 // Defines combos, commented as they are not used
 //#define COMBO_COUNT 11
 //#define COMBO_TERM 70
