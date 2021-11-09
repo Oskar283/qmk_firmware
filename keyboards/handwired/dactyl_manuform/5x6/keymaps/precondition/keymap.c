@@ -1,4 +1,4 @@
-/* A standard layout for the Dactyl Manuform 5x6 Keyboard */ 
+/* A standard layout for the Dactyl Manuform 5x6 Keyboard */
 
 #include QMK_KEYBOARD_H
 #include "keymap_swedish.h"
@@ -38,10 +38,10 @@ enum layer_names {
 #define HOME_T LCTL_T(SE_T)
 
 // Right-hand home row mods
-#define HOME_O LGUI_T(SE_O)
-#define HOME_I LALT_T(SE_I)
+#define HOME_N RCTL_T(SE_N)
 #define HOME_E RSFT_T(SE_E)
-#define HOME_N LCTL_T(SE_N)
+#define HOME_I RALT_T(SE_I)
+#define HOME_O RGUI_T(SE_O)
 
 #define NAV MO(_NAV)
 #define ADJUST MO(_ADJUST)
@@ -138,9 +138,91 @@ void matrix_scan_user(void) {
   }
 }
 
+
+bool process_bilateral_combinations(uint16_t keycode, uint16_t homerow_keycode, uint16_t modifier, uint8_t mod_state)
+{
+    unregister_code(modifier);
+    tap_code(homerow_keycode);
+    tap_code16(keycode);
+    set_mods(mod_state);
+    return false;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     mod_state = get_mods();
     switch (keycode) {
+	//Bilateral combinations for normal keycodes
+	//Top Left keycodes
+    case SE_Q:
+    case SE_W:
+    case SE_F:
+    case SE_P:
+    case SE_B:
+	//Middle keycodes
+    case SE_A:
+    case HOME_R:
+    case HOME_S:
+    case HOME_T:
+    case SE_G:
+	//Bottom Right
+    case SE_BSLS:
+    case SE_Z:
+    case SE_X:
+    case SE_C:
+    case SE_D:
+    case SE_V:
+        if (record->event.pressed && !record->tap.interrupted) {
+            if (mod_state & MOD_BIT(KC_LCTL))
+            {
+                return process_bilateral_combinations(keycode, SE_T, KC_LCTL, mod_state);
+            }
+	    else if (mod_state & MOD_BIT(KC_LSHIFT))
+            {
+                return process_bilateral_combinations(keycode, SE_S, KC_LSHIFT, mod_state);
+            }
+	    else if (mod_state & MOD_BIT(KC_LALT))
+            {
+                return process_bilateral_combinations(keycode, SE_R, KC_LALT, mod_state);
+            }
+        }
+        break;
+	//Top Right keycodes
+    case SE_J:
+    case SE_L:
+    case SE_U:
+    case SE_Y:
+    case SE_SCLN:
+    case SE_MINS:
+	//Middle non-mod-alphas
+    case SE_M:
+    case HOME_N:
+    case HOME_E:
+    case HOME_I:
+    case SE_O:
+    case SE_QUOT:
+	//Bottom Right alphas
+    case SE_K:
+    case SE_H:
+    case SE_COMM:
+    case SE_DOT:
+    case SE_SLSH:
+    case SE_DQUO:
+
+        if (record->event.pressed && !record->tap.interrupted) {
+            if (mod_state & MOD_BIT(KC_RCTL))
+            {
+                return process_bilateral_combinations(keycode, SE_N, KC_RCTL, mod_state);
+            }
+	    else if (mod_state & MOD_BIT(KC_RSHIFT))
+            {
+                return process_bilateral_combinations(keycode, SE_E, KC_RSHIFT, mod_state);
+            }
+	    else if (mod_state & MOD_BIT(KC_RALT))
+            {
+                return process_bilateral_combinations(keycode, SE_I, KC_RALT, mod_state);
+            }
+        }
+        break;
 
     case G_DOWN:
         if (record->event.pressed) {
@@ -195,11 +277,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // Else, let QMK process the KC_ESC keycode as usual
         return true;
 
+
 /*
       case HOME_I:
         // This piece of code nullifies the effect of Right Shift when
-        // tapping the HOME_I key. This helps rolling over HOME_E and HOME_I 
-        // to obtain the intended "ei" instead of "I". Consequently, capital I can 
+        // tapping the HOME_I key. This helps rolling over HOME_E and HOME_I
+        // to obtain the intended "ei" instead of "I". Consequently, capital I can
         // only be obtained by tapping HOME_I and holding HOME_S (which is the left shift mod tap).
         if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
             if (mod_state & MOD_BIT(KC_RSHIFT)) {
@@ -216,8 +299,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 /*
     case HOME_N:
          //This piece of code nullifies the effect of Right Shift when
-         //tapping the HOME_N key. This helps rolling over HOME_E and HOME_N 
-         //to obtain the intended "en" instead of "N". Consequently, capital N can 
+         //tapping the HOME_N key. This helps rolling over HOME_E and HOME_N
+         //to obtain the intended "en" instead of "N". Consequently, capital N can
          //only be obtained by tapping HOME_N and holding HOME_S (which is the left shift mod tap).
         if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
             if (mod_state & MOD_BIT(KC_RSHIFT)) {
@@ -235,8 +318,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 /*
     case HOME_T:
          //This piece of code nullifies the effect of Left Shift when
-         //tapping the HOME_T key. This helps rolling over HOME_S and HOME_T 
-         //to obtain the intended "st" instead of "T". Consequently, capital T can 
+         //tapping the HOME_T key. This helps rolling over HOME_S and HOME_T
+         //to obtain the intended "st" instead of "T". Consequently, capital T can
          //only be obtained by tapping HOME_T and holding HOME_E (which is the right shift mod tap).
         if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
             if (mod_state & MOD_BIT(KC_LSHIFT)) {
@@ -383,7 +466,7 @@ void CA_CC_CV_finished(qk_tap_dance_state_t *state, void *user_data) {
     case SINGLE_HOLD:
       tap_code16(C(KC_A));
       break;
-    case DOUBLE_SINGLE_TAP: 
+    case DOUBLE_SINGLE_TAP:
       tap_code16(C(KC_V));
   }
 }
@@ -404,7 +487,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HOME_I:
-            // My ring finger tends to linger on the key 
+            // My ring finger tends to linger on the key
             // This tapping term allows me to type "ion" effortlessly.
             return TAPPING_TERM + 200;
         case HOME_R:
@@ -442,8 +525,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAV] = LAYOUT_5x6(
         _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
-        _______,_______, C_INS , S_INS ,_______,E_ACUTE,    _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,    KC_HOME,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT,KC_END ,
+        _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
+        _______,_______, C_INS , S_INS ,_______,E_ACUTE,    KC_HOME,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT,KC_END ,
         _______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,
                         _______,_______,                                    _______,_______,
                                          _______,_______,   _______,_______,
@@ -461,12 +544,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                         _______,_______,    KC_BTN3,_______,
                                         _______,_______,    _______,_______
   ),
-    [_GAME] = LAYOUT_5x6(
+ /*   [_GAME] = LAYOUT_5x6(
         KC_ESC , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,    KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,_______,
         KC_TAB , KC_ESC, KC_Q  , KC_W  , KC_E  , KC_R  ,    KC_Y  , KC_U  , KC_UP , KC_O  , KC_P  ,SE_ARNG,
         KC_LSFT, KC_A  , KC_A  , KC_S  , KC_D  , KC_F  ,    KC_H  ,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT,SE_ADIA,
         KC_LCTL, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  ,    KC_N  , KC_M  ,_______,_______,_______,_______,
                         _______,_______,                                   _______,_______,
+                                        _______,_______,    _______,_______,
+                                        _______,_______,    _______,_______,
+                                        _______,_______,    _______,_______
+    ),*/
+    [_GAME] = LAYOUT_5x6(
+     KC_ESC , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                         KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,KC_BSPC,
+     KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                         KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  ,KC_MINS,
+     KC_LSFT, KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  ,KC_SCLN,KC_QUOT,
+     KC_LCTL, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  ,                         KC_N  , KC_M  ,KC_COMM,KC_DOT ,KC_SLSH,KC_BSLASH,
+                      KC_LALT,KC_LALT,                                                       KC_PLUS, KC_EQL,
                                         _______,_______,    _______,_______,
                                         _______,_______,    _______,_______,
                                         _______,_______,    _______,_______
