@@ -16,6 +16,9 @@
 // This prevents short hold periods to be interpreted as individual taps when typing quickly.
 #define PERMISSIVE_HOLD
 
+// Disable same side mod tap activations, unless held for 1 second
+#define BILATERAL_COMBINATIONS 1000
+
 #ifdef AUDIO_ENABLE
     #define STARTUP_SONG SONG(PREONIC_SOUND)
     // #define STARTUP_SONG SONG(NO_SOUND)
