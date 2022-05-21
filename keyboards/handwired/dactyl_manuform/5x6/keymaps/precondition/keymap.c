@@ -12,7 +12,7 @@ enum layer_names {
     _SYM,
     _NAV,
     _MOUSE,
-    _GAME,
+    _QWERTY,
     _ADJUST,
 };
 
@@ -23,7 +23,7 @@ enum layer_names {
 #define ADJUST MO(_ADJUST)
 #define SYM_ENT LT(_SYM, KC_ENT)
 // Toggle Layer
-#define GAME TG(_GAME)
+#define QWERTY TG(_QWERTY)
 
 // Miscellaneous keyboard shortcuts in direct access
 #define UNDO LCTL(SE_Z)
@@ -40,7 +40,7 @@ enum layer_names {
 // Right-hand home row mods
 #define HOME_N RCTL_T(SE_N)
 #define HOME_E RSFT_T(SE_E)
-#define HOME_I RALT_T(SE_I)
+#define HOME_I LALT_T(SE_I)
 #define HOME_O RGUI_T(SE_O)
 
 #define NAV MO(_NAV)
@@ -120,9 +120,6 @@ enum custom_keycodes {
 // Initialize variable holding the binary
 // representation of active modifiers.
 uint8_t mod_state;
-// Initialize boolean variable which
-// tells if the last key hit was an accented letter.
-static bool has_typed_accent;
 /*
  * Cool Function where a single key does ALT+TAB
  * From: https://beta.docs.qmk.fm/features/feature_macros#super-alt-tab
@@ -180,10 +177,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             {
                 return process_bilateral_combinations(keycode, SE_S, KC_LSHIFT, mod_state);
             }
-	    else if (mod_state & MOD_BIT(KC_LALT))
-            {
-                return process_bilateral_combinations(keycode, SE_R, KC_LALT, mod_state);
-            }
+	    //else if (mod_state & MOD_BIT(KC_LALT))
+            //{
+            //    return process_bilateral_combinations(keycode, SE_R, KC_LALT, mod_state);
+            //}
         }
         break;
 	//Top Right keycodes
@@ -217,125 +214,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             {
                 return process_bilateral_combinations(keycode, SE_E, KC_RSHIFT, mod_state);
             }
-	    else if (mod_state & MOD_BIT(KC_RALT))
-            {
-                return process_bilateral_combinations(keycode, SE_I, KC_RALT, mod_state);
-            }
+	   // else if (mod_state & MOD_BIT(KC_RALT))
+           // {
+           //     return process_bilateral_combinations(keycode, SE_I, KC_RALT, mod_state);
+           // }
         }
         break;
 
-    case G_DOWN:
-        if (record->event.pressed) {
-            register_code(KC_G);
-            register_code(KC_DOWN);
-        } else {
-            unregister_code(KC_G);
-            unregister_code(KC_DOWN);
-        }
-	  break;
-
-    case G_UP:
-        if (record->event.pressed) {
-            register_code(KC_G);
-            register_code(KC_UP);
-        } else {
-            unregister_code(KC_G);
-            unregister_code(KC_UP);
-        }
-	  break;
-
-    case G_HOME:
-        if (record->event.pressed) {
-            register_code(KC_G);
-            register_code(KC_HOME);
-        } else {
-            unregister_code(KC_G);
-            unregister_code(KC_HOME);
-        }
-	  break;
-
-    case G_END:
-        if (record->event.pressed) {
-            register_code(KC_G);
-            register_code(KC_END);
-        } else {
-            unregister_code(KC_G);
-            unregister_code(KC_END);
-        }
-		break;
-
-    case KC_ESC:
-        // Home row alt-tabbing.
-        if (mod_state & MOD_MASK_ALT) {
-            if (record->event.pressed) {
-                register_code(KC_TAB);
-            } else {
-                unregister_code(KC_TAB);
-            }
-            return false;
-        }
-        // Else, let QMK process the KC_ESC keycode as usual
-        return true;
-
-
-/*
-      case HOME_I:
-        // This piece of code nullifies the effect of Right Shift when
-        // tapping the HOME_I key. This helps rolling over HOME_E and HOME_I
-        // to obtain the intended "ei" instead of "I". Consequently, capital I can
-        // only be obtained by tapping HOME_I and holding HOME_S (which is the left shift mod tap).
-        if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
-            if (mod_state & MOD_BIT(KC_RSHIFT)) {
-                unregister_code(KC_RSHIFT);
-                tap_code(KC_E);
-                tap_code(KC_I);
-                set_mods(mod_state);
-                return false;
-            }
-        }
-        // else process HOME_I as usual.
-        return true;
-*/
-/*
-    case HOME_N:
-         //This piece of code nullifies the effect of Right Shift when
-         //tapping the HOME_N key. This helps rolling over HOME_E and HOME_N
-         //to obtain the intended "en" instead of "N". Consequently, capital N can
-         //only be obtained by tapping HOME_N and holding HOME_S (which is the left shift mod tap).
-        if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
-            if (mod_state & MOD_BIT(KC_RSHIFT)) {
-                unregister_code(KC_RSHIFT);
-                tap_code(KC_E);
-                tap_code(KC_N);
-                set_mods(mod_state);
-                return false;
-            }
-        }
-         //else process HOME_N as usual.
-        return true;
-*/
-
-/*
-    case HOME_T:
-         //This piece of code nullifies the effect of Left Shift when
-         //tapping the HOME_T key. This helps rolling over HOME_S and HOME_T
-         //to obtain the intended "st" instead of "T". Consequently, capital T can
-         //only be obtained by tapping HOME_T and holding HOME_E (which is the right shift mod tap).
-        if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
-            if (mod_state & MOD_BIT(KC_LSHIFT)) {
-                unregister_code(KC_LSHIFT);
-                tap_code(KC_S);
-                tap_code(KC_T);
-                set_mods(mod_state);
-                return false;
-            }
-        }
-         //else process HOME_T as usual.
-        return true;
-
-*/
-    // Toggle off boolean if any other non-accent key is hit.
-    has_typed_accent = false;
 
     case ALT_TAB:
       if (record->event.pressed) {
@@ -492,6 +377,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM + 200;
         case HOME_R:
             return TAPPING_TERM + 200;
+        case SYM_ENT:
+            // Very low tapping term to make sure I don't hit Enter accidentally.
+            return TAPPING_TERM - 20;
 	default:
             return TAPPING_TERM;
     }
@@ -508,7 +396,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         SE_LPRN,SE_RPRN,                                   SE_LBRC, SE_RBRC,
                                           NAV  , KC_SPC,    KC_BSPC, SYM_ENT,
                                         ALT_TAB, MOUSE ,    KC_DEL , KC_LGUI,
-                                        KC_LALT,KC_LALT,    KC_LGUI, GAME
+                                        KC_LALT,KC_LALT,    KC_LGUI, QWERTY
   ),
 
   [_SYM] = LAYOUT_5x6(
@@ -544,7 +432,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                         _______,_______,    KC_BTN3,_______,
                                         _______,_______,    _______,_______
   ),
- /*   [_GAME] = LAYOUT_5x6(
+ /*   [_QWERTY] = LAYOUT_5x6(
         KC_ESC , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,    KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,_______,
         KC_TAB , KC_ESC, KC_Q  , KC_W  , KC_E  , KC_R  ,    KC_Y  , KC_U  , KC_UP , KC_O  , KC_P  ,SE_ARNG,
         KC_LSFT, KC_A  , KC_A  , KC_S  , KC_D  , KC_F  ,    KC_H  ,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT,SE_ADIA,
@@ -554,7 +442,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                         _______,_______,    _______,_______,
                                         _______,_______,    _______,_______
     ),*/
-    [_GAME] = LAYOUT_5x6(
+    [_QWERTY] = LAYOUT_5x6(
      KC_ESC , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                         KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,KC_BSPC,
      KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                         KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  ,KC_MINS,
      KC_LSFT, KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  ,KC_SCLN,KC_QUOT,
