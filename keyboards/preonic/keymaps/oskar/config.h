@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 // Home row mods settings
 // Default tapping term is 200
 #define TAPPING_TERM 150
@@ -20,8 +18,8 @@
 #define BILATERAL_COMBINATIONS 1000
 
 #ifdef AUDIO_ENABLE
-    #define STARTUP_SONG SONG(PREONIC_SOUND)
-    // #define STARTUP_SONG SONG(NO_SOUND)
+    //#define STARTUP_SONG SONG(PREONIC_SOUND)
+    #define STARTUP_SONG SONG(NO_SOUND)
 #endif
 
 #define MUSIC_MASK (keycode != KC_NO)
